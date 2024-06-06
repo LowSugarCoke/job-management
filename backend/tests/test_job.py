@@ -1,23 +1,21 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+"""
+Test Job: This module contains tests for the Job endpoints in the Job Management application.
+It tests CRUD operations on the Job model using the FastAPI test client.
 
-from fastapi.testclient import TestClient
-from app.main import app
+Author: Jack Lee
+Date: 2024-06-06
+"""
 
-
-client = TestClient(app)
-
-def test_read_jobs():
+def test_read_jobs(client):
     response = client.get("/jobs")
     assert response.status_code == 200
-    assert response.json() == [] 
+    assert response.json() == []
 
-def test_read_job():
+def test_read_job(client):
     response = client.get("/jobs/1")
     assert response.status_code == 404
 
-def test_create_job():
+def test_create_job(client):
     new_job = {
         "id": 1,
         "customerName": "John Doe",
@@ -30,7 +28,7 @@ def test_create_job():
     assert response.status_code == 200
     assert response.json() == new_job
 
-def test_update_job():
+def test_update_job(client):
     new_job = {
         "id": 1,
         "customerName": "John Doe",
@@ -53,7 +51,7 @@ def test_update_job():
     assert response.status_code == 200
     assert response.json() == updated_job
 
-def test_delete_job():
+def test_delete_job(client):
     new_job = {
         "id": 1,
         "customerName": "John Doe",
