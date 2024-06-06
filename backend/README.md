@@ -27,9 +27,11 @@
 
 **Command:**
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 Access the application at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Access the API documentation at [http://localhost:8000/docs](http://localhost:8000/docs)
+
 
 ## Working with Docker
 
