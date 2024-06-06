@@ -35,7 +35,7 @@ Access the API documentation at [http://localhost:8000/docs](http://localhost:80
 ## Running Tests
 **Command:**
 ```bash
-pytest tests/test_main.py
+pytest
 ```
 
 
