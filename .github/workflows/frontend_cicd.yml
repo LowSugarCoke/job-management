@@ -1,0 +1,34 @@
+name: React Application Test with GitHub Actions
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run npm test
+        run: |
+          cd frontend
+          npm test
+
+      - name: Build React Application
+        run: |
+          cd frontend
+          npm run build
