@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "./JobTable.css"
 import {
   Table,
   TableBody,
@@ -11,14 +12,13 @@ import {
   Checkbox
 } from '@mui/material';
 
-const JobTable = ({ jobs, className, onSelectJob }) => {
+const JobTable = ({ jobs, className, onSelectJob, onDoubleClick }) => {
   return (
-    <TableContainer component={Paper} className={className}>
+    <TableContainer component={Paper} className={`job-table ${className}`}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell padding="checkbox">
-            </TableCell>
+            <TableCell padding="checkbox"></TableCell>
             <TableCell>ID</TableCell>
             <TableCell>Customer Name</TableCell>
             <TableCell>Job Type</TableCell>
@@ -29,7 +29,10 @@ const JobTable = ({ jobs, className, onSelectJob }) => {
         </TableHead>
         <TableBody>
           {jobs.map((job) => (
-            <TableRow key={job.id} >
+            <TableRow 
+              key={job.id} 
+              onDoubleClick={() => onDoubleClick && onDoubleClick(job)}
+            >
               <TableCell padding="checkbox">
                 <Checkbox onClick={() => onSelectJob(job.id)}/>
               </TableCell>
@@ -37,7 +40,7 @@ const JobTable = ({ jobs, className, onSelectJob }) => {
               <TableCell>{job.customerName}</TableCell>
               <TableCell>{job.jobType}</TableCell>
               <TableCell>{job.status}</TableCell>
-              <TableCell>{new Date(job.appointmentDate).toLocaleString()}</TableCell>
+              <TableCell>{new Date(job.appointmentDate).toUTCString()}</TableCell>
               <TableCell>{job.technician}</TableCell>
             </TableRow>
           ))}
@@ -60,6 +63,11 @@ JobTable.propTypes = {
   ).isRequired,
   className: PropTypes.string,
   onSelectJob: PropTypes.func.isRequired,
+  onDoubleClick: PropTypes.func,
+};
+
+JobTable.defaultProps = {
+  onDoubleClick: null,  
 };
 
 export default JobTable;
