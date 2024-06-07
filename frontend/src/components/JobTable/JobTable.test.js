@@ -21,11 +21,11 @@ describe('JobTable component', () => {
     const jobs = await fetchJobs();
     render(<JobTable jobs={jobs} onSelectJob={mockOnSelectJob} />)
 
-    expect(await screen.findByText(/ID/i)).toBeInTheDocument()
-    expect(await screen.findByText(/Customer Name/i)).toBeInTheDocument()
-    expect(await screen.findByText(/Job Type/i)).toBeInTheDocument()
-    expect(await screen.findByText(/Status/i)).toBeInTheDocument()
-    expect(await screen.findByText(/Appointment Date/i)).toBeInTheDocument()
-    expect(await screen.findByText(/Technician/i)).toBeInTheDocument()
+    expect(screen.getByText(/ID/i)).toBeInTheDocument()
+    expect(screen.getByText(/Customer Name/i)).toBeInTheDocument()
+    expect(screen.getByText(/Job Type/i)).toBeInTheDocument()
+    expect(screen.getByText(/Status/i)).toBeInTheDocument()
+    expect(screen.getByText(/Appointment Date/i)).toBeInTheDocument()
+    expect(screen.getByText(/Technician/i)).toBeInTheDocument()
   })
 })
