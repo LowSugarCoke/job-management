@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: job_management
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    image: jack20499/job-management-backend
+    ports:
+      - "8000:80"
+    environment:
+      SQLALCHEMY_DATABASE_URL: "mysql+pymysql://root:1234@mysql:3307/job_management"
+    depends_on:
+      - mysql
+
+  frontend:
+    image: jack20499/job-management-frontend
+    ports:
+      - "3000:80"
+
+volumes:
+  mysql-data:
