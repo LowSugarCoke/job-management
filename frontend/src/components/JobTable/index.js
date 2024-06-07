@@ -1,33 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { fetchJobs } from '../../services/api';  
 
 const JobTable = () => {
-    const [jobs] = useState([
-        {
-            id: 1,
-            customerName: "John Doe",
-            jobType: "Plumbing",
-            status: "Scheduled",
-            appointmentDate: "2024-06-15T09:00:00Z",
-            technician: "Jane Smith"
-        },
-        {
-            id: 2,
-            customerName: "Alice Johnson",
-            jobType: "Electrical",
-            status: "Completed",
-            appointmentDate: "2024-05-20T14:00:00Z",
-            technician: "Bob Brown"
-        },
-        {
-            id: 3,
-            customerName: "Carlos Ray",
-            jobType: "HVAC",
-            status: "In Progress",
-            appointmentDate: "2024-06-07T12:00:00Z",
-            technician: "Sam White"
-        }
-    ]);
+    const [jobs, setJobs] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await fetchJobs();
+                setJobs(data);
+            } catch (error) {
+                setError('Failed to fetch jobs.');
+                console.error('Error fetching jobs:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadData();
+    }, []); 
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return (
         <TableContainer component={Paper}>
