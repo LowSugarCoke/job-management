@@ -16,9 +16,10 @@ describe('JobTable component', () => {
         appointmentDate: '2024-06-07T12:00:00Z',
         technician: 'Jane Smith',
       },
-    ])
-
-    render(<JobTable />)
+    ]);
+    const mockOnSelectJob = jest.fn();
+    const jobs = await fetchJobs();
+    render(<JobTable jobs={jobs} onSelectJob={mockOnSelectJob} />)
 
     expect(await screen.findByText(/ID/i)).toBeInTheDocument()
     expect(await screen.findByText(/Customer Name/i)).toBeInTheDocument()

@@ -1,0 +1,22 @@
+.job-view-container{
+    display: flex;
+    justify-content: center;
+    margin-top:20vh;
+}
+
+.job-view-row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width:80%;
+}
+
+.job-view-button-container{
+    align-self: flex-end;
+    width: 15%;
+    display: flex;
+    justify-content:space-around;
+    margin-bottom: 2%;
+}
+

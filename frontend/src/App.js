@@ -1,10 +1,10 @@
 import React from 'react'
-import JobTable from './components/JobTable'
+import JobView from "./pages/JobView"
 
 function App() {
   return (
     <div>
-      <JobTable />
+      <JobView/>
     </div>
   )
 }
