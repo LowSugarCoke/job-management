@@ -24,7 +24,7 @@ const JobCard = ({ job, className, imgSrc }) => {
               Status: {job.status}
             </Typography>
             <Typography variant="body2" color="textSecondary">
-              Appointment Date: {new Date(job.appointmentDate).toLocaleString()}
+              Appointment Date: {new Date(job.appointmentDate).toUTCString()}
             </Typography>
             <Typography variant="body2" color="textSecondary">
               Technician: {job.technician}
