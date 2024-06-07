@@ -24,7 +24,13 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
 
-    - name: Set environment variable
+    - name: Run pip-audit
+      run: pip install pip-audit && pip-audit
+
+    - name: Run Bandit
+      run: pip install bandit && bandit -r ./backend
+
+    - name: Set environment variable(backend test database)
       run: echo "DATABASE_URL=sqlite:///./test.db" >> $GITHUB_ENV
 
     - name: Run Tests
