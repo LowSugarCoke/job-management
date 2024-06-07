@@ -1,12 +1,12 @@
-import React from 'react';
-import JobTable from './components/JobTable';
+import React from 'react'
+import JobTable from './components/JobTable'
 
 function App() {
   return (
-    <div >
-      <JobTable/>
+    <div>
+      <JobTable />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
