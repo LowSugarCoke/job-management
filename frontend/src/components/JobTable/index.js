@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Table,
   TableBody,
@@ -7,45 +8,17 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from '@mui/material'
-import { fetchJobs } from '../../services/api'
+  Checkbox
+} from '@mui/material';
 
-const JobTable = () => {
-  const [jobs, setJobs] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        const data = await fetchJobs()
-        setJobs(data)
-      } catch (error) {
-        setError('Failed to fetch jobs.')
-        console.error('Error fetching jobs:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadData()
-  }, [])
-
-  if (loading) {
-    return <p>Loading...</p>
-  }
-
-  if (error) {
-    return <p>{error}</p>
-  }
-
+const JobTable = ({ jobs, className, onSelectJob }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={className}>
       <Table>
         <TableHead>
           <TableRow>
+            <TableCell padding="checkbox">
+            </TableCell>
             <TableCell>ID</TableCell>
             <TableCell>Customer Name</TableCell>
             <TableCell>Job Type</TableCell>
@@ -56,23 +29,37 @@ const JobTable = () => {
         </TableHead>
         <TableBody>
           {jobs.map((job) => (
-            <TableRow key={job.id}>
-              <TableCell component="th" scope="row">
-                {job.id}
+            <TableRow key={job.id} >
+              <TableCell padding="checkbox">
+                <Checkbox onClick={() => onSelectJob(job.id)}/>
               </TableCell>
+              <TableCell>{job.id}</TableCell>
               <TableCell>{job.customerName}</TableCell>
               <TableCell>{job.jobType}</TableCell>
               <TableCell>{job.status}</TableCell>
-              <TableCell>
-                {new Date(job.appointmentDate).toLocaleString()}
-              </TableCell>
+              <TableCell>{new Date(job.appointmentDate).toLocaleString()}</TableCell>
               <TableCell>{job.technician}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};
 
-export default JobTable
+JobTable.propTypes = {
+  jobs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      customerName: PropTypes.string.isRequired,
+      jobType: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      appointmentDate: PropTypes.string.isRequired,
+      technician: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  className: PropTypes.string,
+  onSelectJob: PropTypes.func.isRequired,
+};
+
+export default JobTable;

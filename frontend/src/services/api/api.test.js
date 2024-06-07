@@ -1,6 +1,6 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { fetchJobs, fetchJobById, createJob, updateJob, deleteJob } from './api'
+import { fetchJobs, fetchJobById, createJob, updateJob, deleteJob } from '.'
 
 describe('API tests', () => {
   let mock
