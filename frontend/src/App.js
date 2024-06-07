@@ -1,12 +1,8 @@
 import React from 'react'
-import JobView from "./pages/JobView"
+import Router from './router';
 
 function App() {
-  return (
-    <div>
-      <JobView/>
-    </div>
-  )
+    return <Router />;
 }
 
 export default App
