@@ -9,7 +9,8 @@ const Router = () => (
     <Routes>
       <Route path="/" element={<JobView />} />
       <Route path="/jobdetails" element={<JobDetailsView />} />
-      <Route path="/jobform" element={<JobFormView />} />
+      <Route path="/jobform/create" element={<JobFormView action="create" />} />
+      <Route path="/jobform/modify" element={<JobFormView action="modify" />} />
     </Routes>
   </BrowserRouter>
 );

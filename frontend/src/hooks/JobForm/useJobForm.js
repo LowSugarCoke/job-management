@@ -1,15 +1,19 @@
 import { useNavigate } from 'react-router-dom';
-import { createJob } from '../../services/api';  
+import { createJob, updateJob } from '../../services/api';
 
-const useJobForm = () => {
+const useJobForm = (job = null) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (formValues) => {
     try {
-      await createJob(formValues);
-      navigate('/');  
+      if (job) {
+        await updateJob(job.id, formValues);
+      } else {
+        await createJob(formValues);
+      }
+      navigate('/');
     } catch (error) {
-      console.error('Error creating job:', error);
+      console.error('Error submitting job form:', error);
     }
   };
 
