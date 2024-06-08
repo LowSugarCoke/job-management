@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import { useFetchJobs } from './useFetchJobs'
 import { fetchJobs as fetchJobsAPI } from '../../services/api'
 import { waitFor } from '@testing-library/react'
@@ -28,6 +28,7 @@ describe('useFetchJobs', () => {
 
     expect(result.current.jobs).toEqual(mockJobsData)
     expect(result.current.error).toBeNull()
+    expect(result.current.isFirstLoad).toBeFalsy() 
   })
 
   test('handles errors when fetching jobs', async () => {
@@ -44,5 +45,25 @@ describe('useFetchJobs', () => {
 
     expect(result.current.jobs).toEqual([])
     expect(result.current.error).toEqual(errorMessage)
+    expect(result.current.isFirstLoad).toBeFalsy() 
+  })
+
+  test('fetches jobs on manual call after first load', async () => {
+    const mockJobsData = [{ id: 1, title: 'Software Engineer' }]
+    fetchJobsAPI.mockResolvedValue(mockJobsData)
+
+    const { result } = renderHook(() => useFetchJobs())
+
+    await waitFor(() => expect(result.current.loading).toBeFalsy())
+    expect(result.current.jobs).toEqual(mockJobsData)
+
+    const newMockJobsData = [{ id: 2, title: 'Product Manager' }]
+    fetchJobsAPI.mockResolvedValueOnce(newMockJobsData)
+
+    await act(async () => {
+      await result.current.fetchJobs()
+    })
+
+    expect(result.current.jobs).toEqual(newMockJobsData)
   })
 })

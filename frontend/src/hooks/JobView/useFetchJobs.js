@@ -10,6 +10,7 @@ export const useFetchJobs = () => {
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [isFirstLoad, setIsFirstLoad] = useState(true)
 
   const fetchJobs = async () => {
     setLoading(true)
@@ -17,6 +18,7 @@ export const useFetchJobs = () => {
       const data = await fetchJobsAPI()
       setJobs(data)
       setError(null)
+      setIsFirstLoad(false) 
     } catch (error) {
       setError('Failed to fetch jobs')
       console.error('Error fetching jobs:', error)
@@ -26,8 +28,10 @@ export const useFetchJobs = () => {
   }
 
   useEffect(() => {
-    fetchJobs()
-  }, [])
+    if (isFirstLoad) {
+      fetchJobs()
+    }
+  }, [isFirstLoad])
 
   return { jobs, loading, error, fetchJobs }
 }

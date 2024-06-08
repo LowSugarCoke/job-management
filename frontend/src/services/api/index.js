@@ -51,7 +51,6 @@ export const fetchJobById = async (id) => {
   }
 }
 
-// Similarly, update other functions to validate data format
 export const createJob = async (jobData) => {
   try {
     const response = await axios.post(`${BASE_URL}jobs`, jobData)
