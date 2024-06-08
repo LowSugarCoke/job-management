@@ -1,28 +1,33 @@
-import { useState, useEffect } from 'react';
-import { fetchJobs as fetchJobsAPI } from '../../services/api';  
+import { useState, useEffect } from 'react'
+import { fetchJobs as fetchJobsAPI } from '../../services/api'
 
+/**
+ * @summary Custom hook to fetch and manage job data from an API
+ * @created by Jack Lee
+ * @since 2024-06-07
+ */
 export const useFetchJobs = () => {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [jobs, setJobs] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const fetchJobs = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const data = await fetchJobsAPI();
-      setJobs(data);
-      setError(null);
+      const data = await fetchJobsAPI()
+      setJobs(data)
+      setError(null)
     } catch (error) {
-      setError('Failed to fetch jobs');
-      console.error('Error fetching jobs:', error);
+      setError('Failed to fetch jobs')
+      console.error('Error fetching jobs:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchJobs();
-  }, []);
+    fetchJobs()
+  }, [])
 
-  return { jobs, loading, error, fetchJobs };
-};
+  return { jobs, loading, error, fetchJobs }
+}

@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-  Avatar
-} from '@mui/material';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Card, CardContent, Typography, Grid, Avatar } from '@mui/material'
 
+/**
+ * @summary Displays job details in a card format
+ * @created by Jack Lee
+ * @since 2024-06-07
+ */
 const JobCard = ({ job, className, imgSrc }) => {
   return (
     <Card className={className}>
@@ -32,14 +31,18 @@ const JobCard = ({ job, className, imgSrc }) => {
           </Grid>
           {imgSrc && (
             <Grid item xs={3} container justifyContent="center">
-              <Avatar alt={job.technician} src={imgSrc} sx={{ width: 100, height: 100 }} />
+              <Avatar
+                alt={job.technician}
+                src={imgSrc}
+                sx={{ width: 100, height: 100 }}
+              />
             </Grid>
           )}
         </Grid>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 JobCard.propTypes = {
   job: PropTypes.shape({
@@ -51,6 +54,6 @@ JobCard.propTypes = {
   }).isRequired,
   className: PropTypes.string,
   imgSrc: PropTypes.string,
-};
+}
 
-export default JobCard;
+export default JobCard
