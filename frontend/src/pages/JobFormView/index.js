@@ -1,13 +1,16 @@
 import React from 'react';
 import JobForm from '../../components/JobForm';
 import useJobForm from '../../hooks/JobForm/useJobForm';
+import { useLocation } from 'react-router-dom';
 
 const JobFormView = () => {
-  const { handleSubmit } = useJobForm();
+  const location = useLocation();
+  const job = location.state?.job || null;
+  const { handleSubmit } = useJobForm(job);
 
   return (
     <div className="job-view-container">
-      <JobForm onSubmit={handleSubmit} />
+      <JobForm onSubmit={handleSubmit} job={job} />
     </div>
   );
 };

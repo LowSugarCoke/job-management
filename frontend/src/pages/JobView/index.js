@@ -4,17 +4,19 @@ import { useFetchJobs } from '../../hooks/JobView/useFetchJobs';
 import { useJobSelection } from '../../hooks/JobView/useJobSelection';
 import { useJobNavigation } from '../../hooks/JobView/useJobNavigation';
 import { useJobDeletion } from '../../hooks/JobView/useJobDeletion';
-import { CircularProgress, Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import ErrorComponent from '../../components/ErrorComponent';
 import './JobView.css';
 
 const JobView = () => {
   const { jobs, loading, error, fetchJobs } = useFetchJobs();
   const { selectedJobs, handleSelectJob, resetSelectedJobs } = useJobSelection();
-  const { handleNewJob, handleDoubleClick } = useJobNavigation();
+  const { handleNewJob, handleModifyJob, handleDoubleClick } = useJobNavigation(jobs);
   const { handleDeleteJobs, deleting, deleteError } = useJobDeletion(fetchJobs, resetSelectedJobs);
 
-  if (loading) return <Box display="flex" justifyContent="center"><CircularProgress /></Box>;
-  if (error || deleteError) return <p>{error || deleteError}</p>;
+  if (loading) return <LoadingSpinner />;
+  if (error || deleteError) return <ErrorComponent message={error || deleteError} />;
 
   return (
     <>
@@ -22,7 +24,14 @@ const JobView = () => {
         <div className="job-view-row">
           <div className="job-view-button-container">
             <Button variant="contained" color="primary" onClick={handleNewJob}>New</Button>
-            <Button variant="contained" color="primary" disabled={selectedJobs.length !== 1}>Modify</Button>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              disabled={selectedJobs.length !== 1} 
+              onClick={() => handleModifyJob(selectedJobs[0])}
+            >
+              Modify
+            </Button>
             <Button 
               variant="contained" 
               color="primary" 
@@ -32,7 +41,7 @@ const JobView = () => {
               Delete
             </Button>
           </div>
-          <JobTable jobs={jobs} onSelectJob={handleSelectJob} onDoubleClick={handleDoubleClick} selectedJobs={selectedJobs}/>
+          <JobTable jobs={jobs} onSelectJob={handleSelectJob} onDoubleClick={handleDoubleClick} selectedJobs={selectedJobs} />
         </div>
       </div>
     </>
