@@ -10,6 +10,11 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     image: jack20499/job-management-backend
@@ -18,12 +23,15 @@ services:
     environment:
       DATABASE_URL: "mysql+pymysql://root:1234@mysql:3306/job_management"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   frontend:
     image: jack20499/job-management-frontend
     ports:
       - "3000:80"
+    depends_on:
+      - backend
 
 volumes:
   mysql-data:
