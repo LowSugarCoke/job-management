@@ -1,28 +1,28 @@
 import { useState, useEffect } from 'react';
-import { fetchJobs } from '../../services/api';  
+import { fetchJobs as fetchJobsAPI } from '../../services/api';  
 
 export const useFetchJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const loadJobs = async () => {
-      setLoading(true);
-      try {
-        const data = await fetchJobs();
-        setJobs(data);
-        setError(null);
-      } catch (error) {
-        setError('Failed to fetch jobs');
-        console.error('Error fetching jobs:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchJobs = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchJobsAPI();
+      setJobs(data);
+      setError(null);
+    } catch (error) {
+      setError('Failed to fetch jobs');
+      console.error('Error fetching jobs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    loadJobs();
+  useEffect(() => {
+    fetchJobs();
   }, []);
 
-  return { jobs, loading, error };
+  return { jobs, loading, error, fetchJobs };
 };
