@@ -16,7 +16,7 @@ services:
     ports:
       - "8000:80"
     environment:
-      SQLALCHEMY_DATABASE_URL: "mysql+pymysql://root:1234@mysql:3307/job_management"
+      DATABASE_URL: "mysql+pymysql://root:1234@mysql:3306/job_management"
     depends_on:
       - mysql
 
