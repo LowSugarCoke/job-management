@@ -3,6 +3,12 @@ import { render, screen } from '@testing-library/react'
 import JobTable from '.'
 import { fetchJobs } from '../../services/api'
 
+/**
+ * @summary Tests for JobTable component
+ * @created by Jack Lee
+ * @since 2024-06-07
+ */
+
 jest.mock('../../services/api')
 
 describe('JobTable component', () => {
@@ -16,9 +22,9 @@ describe('JobTable component', () => {
         appointmentDate: '2024-06-07T12:00:00Z',
         technician: 'Jane Smith',
       },
-    ]);
-    const mockOnSelectJob = jest.fn();
-    const jobs = await fetchJobs();
+    ])
+    const mockOnSelectJob = jest.fn()
+    const jobs = await fetchJobs()
     render(<JobTable jobs={jobs} onSelectJob={mockOnSelectJob} />)
 
     expect(screen.getByText(/ID/i)).toBeInTheDocument()

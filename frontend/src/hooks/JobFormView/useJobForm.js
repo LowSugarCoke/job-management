@@ -1,23 +1,28 @@
-import { useNavigate } from 'react-router-dom';
-import { createJob, updateJob } from '../../services/api';
+import { useNavigate } from 'react-router-dom'
+import { createJob, updateJob } from '../../services/api'
 
+/**
+ * @summary Custom hook to handle job form submission logic
+ * @created by Jack Lee
+ * @since 2024-06-07
+ */
 const useJobForm = (job = null) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = async (formValues) => {
     try {
       if (job) {
-        await updateJob(job.id, formValues);
+        await updateJob(job.id, formValues)
       } else {
-        await createJob(formValues);
+        await createJob(formValues)
       }
-      navigate('/');
+      navigate('/')
     } catch (error) {
-      console.error('Error submitting job form:', error);
+      console.error('Error submitting job form:', error)
     }
-  };
+  }
 
-  return { handleSubmit };
-};
+  return { handleSubmit }
+}
 
-export default useJobForm;
+export default useJobForm

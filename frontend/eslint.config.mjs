@@ -1,7 +1,7 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
-import prettierConfig from 'eslint-config-prettier'; 
+import globals from 'globals'
+import pluginJs from '@eslint/js'
+import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js'
+import prettierConfig from 'eslint-config-prettier'
 
 const jestGlobals = {
   afterAll: false,
@@ -12,7 +12,7 @@ const jestGlobals = {
   expect: false,
   jest: false,
   test: false,
-};
+}
 
 export default [
   {
@@ -24,11 +24,11 @@ export default [
     },
     settings: {
       react: {
-        version: "detect",
+        version: 'detect',
       },
     },
   },
   pluginJs.configs.recommended,
   pluginReactConfig,
   prettierConfig,
-];
+]

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import "./JobTable.css"
+import React from 'react'
+import PropTypes from 'prop-types'
+import './JobTable.css'
 import {
   Table,
   TableBody,
@@ -9,9 +9,14 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Checkbox
-} from '@mui/material';
+  Checkbox,
+} from '@mui/material'
 
+/**
+ * @summary Displays a table of jobs with selectable rows and double-click functionality.
+ * @created by Jack Lee
+ * @since 2024-06-07
+ */
 const JobTable = ({ jobs, className, onSelectJob, onDoubleClick }) => {
   return (
     <TableContainer component={Paper} className={`job-table ${className}`}>
@@ -29,27 +34,29 @@ const JobTable = ({ jobs, className, onSelectJob, onDoubleClick }) => {
         </TableHead>
         <TableBody>
           {jobs.map((job) => (
-            <TableRow 
-              key={job.id} 
+            <TableRow
+              key={job.id}
               onDoubleClick={() => onDoubleClick && onDoubleClick(job)}
               className="job-table-row"
             >
               <TableCell padding="checkbox">
-                <Checkbox onClick={() => onSelectJob(job.id)}/>
+                <Checkbox onClick={() => onSelectJob(job.id)} />
               </TableCell>
               <TableCell>{job.id}</TableCell>
               <TableCell>{job.customerName}</TableCell>
               <TableCell>{job.jobType}</TableCell>
               <TableCell>{job.status}</TableCell>
-              <TableCell>{new Date(job.appointmentDate).toUTCString()}</TableCell>
+              <TableCell>
+                {new Date(job.appointmentDate).toUTCString()}
+              </TableCell>
               <TableCell>{job.technician}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}
 
 JobTable.propTypes = {
   jobs: PropTypes.arrayOf(
@@ -60,15 +67,15 @@ JobTable.propTypes = {
       status: PropTypes.string.isRequired,
       appointmentDate: PropTypes.string.isRequired,
       technician: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   className: PropTypes.string,
   onSelectJob: PropTypes.func.isRequired,
   onDoubleClick: PropTypes.func,
-};
+}
 
 JobTable.defaultProps = {
-  onDoubleClick: null,  
-};
+  onDoubleClick: null,
+}
 
-export default JobTable;
+export default JobTable

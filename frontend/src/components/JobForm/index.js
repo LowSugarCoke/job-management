@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import {
   TextField,
   Button,
@@ -9,32 +9,48 @@ import {
   MenuItem,
   Select,
   InputLabel,
-  FormControl
-} from '@mui/material';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './JobForm.css';
-import useJobForm from '../../hooks/JobForm/useJobForm';
+  FormControl,
+} from '@mui/material'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import './JobForm.css'
+import useJobForm from '../../hooks/JobForm/useJobForm'
 
+/**
+ * @summary Renders a job form with fields for customer name, job type, status, appointment date, and technician. 
+ * It includes validation and submission handling.
+ * @created by Jack Lee
+ * @since 2024-06-07
+ */
 const JobForm = ({ job, onSubmit }) => {
-  const { formValues, handleInputChange, handleDateChange, validateForm, handleBack } = useJobForm(job);
-  const [formError, setFormError] = useState('');
+  const {
+    formValues,
+    handleInputChange,
+    handleDateChange,
+    validateForm,
+    handleBack,
+  } = useJobForm(job)
+  const [formError, setFormError] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (validateForm()) {
-      onSubmit(formValues);
+      onSubmit(formValues)
     } else {
-      setFormError('Please fill out all fields.');
+      setFormError('Please fill out all fields.')
     }
-  };
+  }
 
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
         Job Form
       </Typography>
-      {formError && <Typography variant="body1" color="error">{formError}</Typography>}
+      {formError && (
+        <Typography variant="body1" color="error">
+          {formError}
+        </Typography>
+      )}
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -70,7 +86,9 @@ const JobForm = ({ job, onSubmit }) => {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="body1">Appointment Date (Local time):</Typography>
+            <Typography variant="body1">
+              Appointment Date (Local time):
+            </Typography>
             <DatePicker
               selected={formValues.appointmentDate}
               onChange={handleDateChange}
@@ -104,12 +122,12 @@ const JobForm = ({ job, onSubmit }) => {
         </Grid>
       </form>
     </Container>
-  );
-};
+  )
+}
 
 JobForm.propTypes = {
   job: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
-};
+}
 
-export default JobForm;
+export default JobForm

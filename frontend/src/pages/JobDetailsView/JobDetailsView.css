@@ -1,21 +1,21 @@
-.job-details-container{
-    display: flex;
-    justify-content: center;
-    margin-top:20vh;
+.job-details-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
 }
 
-.job-details-row{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width:80%;
+.job-details-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
 }
 
-.job-card{
-    width:60%;
+.job-card {
+  width: 60%;
 }
 
 .job-details-container .btn-back {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
+}
