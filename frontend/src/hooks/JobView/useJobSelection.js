@@ -9,5 +9,9 @@ export const useJobSelection = () => {
     );
   };
 
-  return { selectedJobs, handleSelectJob };
+  const resetSelectedJobs = () => {
+    setSelectedJobs([]);
+  };
+
+  return { selectedJobs, handleSelectJob, resetSelectedJobs };
 };
