@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchJobs } from '../services/api';  
+import { fetchJobs } from '../../services/api';  
 
 export const useFetchJobs = () => {
   const [jobs, setJobs] = useState([]);

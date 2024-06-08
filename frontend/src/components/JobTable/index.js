@@ -32,6 +32,7 @@ const JobTable = ({ jobs, className, onSelectJob, onDoubleClick }) => {
             <TableRow 
               key={job.id} 
               onDoubleClick={() => onDoubleClick && onDoubleClick(job)}
+              className="job-table-row"
             >
               <TableCell padding="checkbox">
                 <Checkbox onClick={() => onSelectJob(job.id)}/>
