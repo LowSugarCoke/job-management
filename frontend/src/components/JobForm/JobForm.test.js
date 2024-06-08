@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import JobForm from "./index";
 
-jest.mock('../../hooks/JobForm/useComponentJobForm', () => ({
+jest.mock('../../hooks/JobForm/useJobForm', () => ({
     __esModule: true,
     default: () => ({
         formValues: {

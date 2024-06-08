@@ -1,6 +1,6 @@
 import React from 'react';
 import JobForm from '../../components/JobForm';
-import useJobForm from '../../hooks/JobForm/useJobForm';
+import useJobForm from '../../hooks/JobFormView/useJobForm';
 import { useLocation } from 'react-router-dom';
 
 const JobFormView = () => {
