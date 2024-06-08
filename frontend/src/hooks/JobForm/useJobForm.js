@@ -1,23 +1,47 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createJob, updateJob } from '../../services/api';
 
-const useJobForm = (job = null) => {
+const useJobForm = (initialJob) => {
+  const [formValues, setFormValues] = useState(initialJob || {
+    customerName: '',
+    jobType: '',
+    status: '',
+    appointmentDate: null,
+    technician: ''
+  });
+
   const navigate = useNavigate();
 
-  const handleSubmit = async (formValues) => {
-    try {
-      if (job) {
-        await updateJob(job.id, formValues);
-      } else {
-        await createJob(formValues);
-      }
-      navigate('/');
-    } catch (error) {
-      console.error('Error submitting job form:', error);
-    }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value
+    });
   };
 
-  return { handleSubmit };
+  const handleDateChange = (date) => {
+    setFormValues({
+      ...formValues,
+      appointmentDate: date
+    });
+  };
+
+  const validateForm = () => {
+    return Object.values(formValues).every(value => value !== null && value !== '');
+  };
+
+  const handleBack = () => {
+    navigate(-1); 
+  };
+
+  return {
+    formValues,
+    handleInputChange,
+    handleDateChange,
+    validateForm,
+    handleBack
+  };
 };
 
 export default useJobForm;

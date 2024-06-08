@@ -14,10 +14,10 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './JobForm.css';
-import useComponentJobForm from '../../hooks/JobForm/useComponentJobForm';
+import useJobForm from '../../hooks/JobForm/useJobForm';
 
 const JobForm = ({ job, onSubmit }) => {
-  const { formValues, handleInputChange, handleDateChange, validateForm, handleBack } = useComponentJobForm(job);
+  const { formValues, handleInputChange, handleDateChange, validateForm, handleBack } = useJobForm(job);
   const [formError, setFormError] = useState('');
 
   const handleSubmit = (e) => {
