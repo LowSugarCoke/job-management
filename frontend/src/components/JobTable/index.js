@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {formatDateWithTimeZone} from "../../utils/dateUtils"
 import './JobTable.css'
 import {
   Table,
@@ -12,11 +13,13 @@ import {
   Checkbox,
 } from '@mui/material'
 
+
 /**
  * @summary Displays a table of jobs with selectable rows and double-click functionality.
  * @created by Jack Lee
  * @since 2024-06-07
  */
+
 const JobTable = ({ jobs, className, onSelectJob, onDoubleClick }) => {
   return (
     <TableContainer component={Paper} className={`job-table ${className}`}>
@@ -46,9 +49,7 @@ const JobTable = ({ jobs, className, onSelectJob, onDoubleClick }) => {
               <TableCell>{job.customerName}</TableCell>
               <TableCell>{job.jobType}</TableCell>
               <TableCell>{job.status}</TableCell>
-              <TableCell>
-                {new Date(job.appointmentDate).toUTCString()}
-              </TableCell>
+              <TableCell>{formatDateWithTimeZone(job.appointmentDate)}</TableCell>
               <TableCell>{job.technician}</TableCell>
             </TableRow>
           ))}
