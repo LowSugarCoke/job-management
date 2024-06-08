@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mysql:
@@ -11,13 +11,15 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test:
+        ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p1234 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   backend:
-    image: jack20499/job-management-backend
+    build:
+      context: ./backend
     ports:
       - "8000:80"
     environment:
@@ -27,7 +29,8 @@ services:
         condition: service_healthy
 
   frontend:
-    image: jack20499/job-management-frontend
+    build:
+      context: ./frontend
     ports:
       - "3000:80"
     depends_on:
