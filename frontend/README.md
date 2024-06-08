@@ -1,15 +1,20 @@
-## Starting the Application
+## Frontend Setup
 
-## Installing Dependencies
 
+### Prerequisites
+Ensure you have the following installed:
+- **Node.js 20.x** or later: [Download Node.js](https://nodejs.org/en/download/)
+- **npm**: Usually included with Node.js.
+
+
+### Installing Dependencies
 **Command:**
 
 ```bash
 npm install
 ```
 
-## Running the Application
-
+### Running the Application
 **Command:**
 
 ```bash

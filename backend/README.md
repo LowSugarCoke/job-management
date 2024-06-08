@@ -1,4 +1,15 @@
-## Starting the Application
+## Backend Setup
+
+### Prerequisites
+Ensure you have the following installed:
+- **Python 3.10** or later: [Download Python](https://www.python.org/downloads/)
+
+Create a .env file with the following MySQL configuration:
+```
+DATABASE_URL = "mysql+pymysql://{username}:{password}@localhost:{port}/job_management"
+```
+Replace {username} with your MySQL username, {password} with your MySQL password, and {port} with your MySQL port.
+
 
 ### Creating a Python Virtual Environment
 
@@ -23,16 +34,17 @@
    pip install -r requirements.txt
    ```
 
-## Running the Application
+### Running the Application
 
 **Command:**
 ```bash
+cd backend
 uvicorn app.main:app --reload
 ```
 Access the application at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 Access the API documentation at [http://localhost:8000/docs](http://localhost:8000/docs)
 
-## Running Tests
+### Running Tests
 **Command:**
 ```bash
 pytest
