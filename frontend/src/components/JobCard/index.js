@@ -9,23 +9,23 @@ import { Card, CardContent, Typography, Grid, Avatar } from '@mui/material'
  */
 const JobCard = ({ job, className, imgSrc }) => {
   return (
-    <Card className={className}>
+    <Card sx={{ boxShadow: 5 }} className={className}>
       <CardContent>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={9}>
-            <Typography variant="h6" component="div">
+            <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
               Customer: {job.customerName}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
               Job Type: {job.jobType}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
               Status: {job.status}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
               Appointment Date: {new Date(job.appointmentDate).toUTCString()}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
               Technician: {job.technician}
             </Typography>
           </Grid>
@@ -34,7 +34,7 @@ const JobCard = ({ job, className, imgSrc }) => {
               <Avatar
                 alt={job.technician}
                 src={imgSrc}
-                sx={{ width: 100, height: 100 }}
+                sx={{ width: 150, height: 150 }}
               />
             </Grid>
           )}

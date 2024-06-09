@@ -1,0 +1,19 @@
+.home-view {
+  background-image: url('../../../public/homepage.png');
+  background-color: #f7fdf6;
+  background-size: 30%;
+  background-position: center;
+  background-position-y: 10vh;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100vh;
+}
+
+.btn-container {
+  margin-bottom: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

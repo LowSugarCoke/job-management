@@ -1,8 +1,7 @@
 {
   "short_name": "Job Manager",
   "name": "Job Management Dashboard",
-  "icons": [
-  ],
+  "icons": [],
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",

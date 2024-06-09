@@ -71,7 +71,7 @@ describe('useJobForm', () => {
       'Error submitting job form:',
       error,
     )
-    expect(navigate).not.toHaveBeenCalled() 
+    expect(navigate).not.toHaveBeenCalled()
     consoleErrorMock.mockRestore()
   })
 })
