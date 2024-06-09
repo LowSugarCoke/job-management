@@ -17,7 +17,7 @@ import './JobForm.css'
 import useJobForm from '../../hooks/JobForm/useJobForm'
 
 /**
- * @summary Renders a job form with fields for customer name, job type, status, appointment date, and technician. 
+ * @summary Renders a job form with fields for customer name, job type, status, appointment date, and technician.
  * It includes validation and submission handling.
  * @created by Jack Lee
  * @since 2024-06-07

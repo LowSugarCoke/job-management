@@ -18,7 +18,7 @@ export const useFetchJobs = () => {
       const data = await fetchJobsAPI()
       setJobs(data)
       setError(null)
-      setIsFirstLoad(false) 
+      setIsFirstLoad(false)
     } catch (error) {
       setError('Failed to fetch jobs')
       console.error('Error fetching jobs:', error)

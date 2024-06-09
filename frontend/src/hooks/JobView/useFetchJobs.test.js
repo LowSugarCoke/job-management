@@ -28,7 +28,7 @@ describe('useFetchJobs', () => {
 
     expect(result.current.jobs).toEqual(mockJobsData)
     expect(result.current.error).toBeNull()
-    expect(result.current.isFirstLoad).toBeFalsy() 
+    expect(result.current.isFirstLoad).toBeFalsy()
   })
 
   test('handles errors when fetching jobs', async () => {
@@ -45,7 +45,7 @@ describe('useFetchJobs', () => {
 
     expect(result.current.jobs).toEqual([])
     expect(result.current.error).toEqual(errorMessage)
-    expect(result.current.isFirstLoad).toBeFalsy() 
+    expect(result.current.isFirstLoad).toBeFalsy()
   })
 
   test('fetches jobs on manual call after first load', async () => {

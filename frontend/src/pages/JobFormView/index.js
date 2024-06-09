@@ -14,7 +14,7 @@ const JobFormView = () => {
   const { handleSubmit } = useJobForm(job)
 
   return (
-    <div className="job-view-container">
+    <div>
       <JobForm onSubmit={handleSubmit} job={job} />
     </div>
   )

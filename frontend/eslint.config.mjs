@@ -20,7 +20,7 @@ export default [
       globals: {
         ...globals.browser,
         ...jestGlobals,
-        Intl: 'readonly', 
+        Intl: 'readonly',
       },
     },
     settings: {
