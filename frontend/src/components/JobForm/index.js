@@ -22,7 +22,7 @@ import useJobForm from '../../hooks/JobForm/useJobForm'
  * @created by Jack Lee
  * @since 2024-06-07
  */
-const JobForm = ({ job, onSubmit }) => {
+const JobForm = ({ job, onSubmit, className }) => {
   const {
     formValues,
     handleInputChange,
@@ -42,7 +42,7 @@ const JobForm = ({ job, onSubmit }) => {
   }
 
   return (
-    <Container>
+    <Container className={className}>
       <Typography variant="h4" gutterBottom>
         Job Form
       </Typography>
@@ -128,6 +128,7 @@ const JobForm = ({ job, onSubmit }) => {
 JobForm.propTypes = {
   job: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 export default JobForm

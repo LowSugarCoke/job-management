@@ -1,0 +1,10 @@
+.job-form-view{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-form{
+    margin-bottom: 15vh;
+}
