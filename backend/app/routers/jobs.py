@@ -7,7 +7,7 @@ Date: 2024-06-06
 """
 
 from typing import List
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends
 from app.controllers import jobs_controller
 from app.database import get_db
 from sqlalchemy.orm import Session
