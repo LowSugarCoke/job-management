@@ -16,7 +16,7 @@ const useJobForm = (job = null) => {
       } else {
         await createJob(formValues)
       }
-      navigate('/')
+      navigate('/jobview')
     } catch (error) {
       console.error('Error submitting job form:', error)
     }

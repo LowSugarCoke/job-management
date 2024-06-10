@@ -33,7 +33,7 @@ describe('useJobForm', () => {
 
     expect(createJob).toHaveBeenCalledWith(formValues)
     expect(updateJob).not.toHaveBeenCalled()
-    expect(navigate).toHaveBeenCalledWith('/')
+    expect(navigate).toHaveBeenCalledWith('/jobview')
   })
 
   test('updates an existing job if a job is passed', async () => {
@@ -51,7 +51,7 @@ describe('useJobForm', () => {
 
     expect(updateJob).toHaveBeenCalledWith(job.id, formValues)
     expect(createJob).not.toHaveBeenCalled()
-    expect(navigate).toHaveBeenCalledWith('/')
+    expect(navigate).toHaveBeenCalledWith('/jobview')
   })
 
   test('handles exceptions and logs errors', async () => {
