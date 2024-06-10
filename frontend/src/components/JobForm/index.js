@@ -75,6 +75,7 @@ const JobForm = ({ job, onSubmit, className }) => {
             <FormControl fullWidth>
               <InputLabel>Status</InputLabel>
               <Select
+                label="status"
                 name="status"
                 value={formValues.status}
                 onChange={handleInputChange}
