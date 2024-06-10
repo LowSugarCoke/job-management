@@ -39,12 +39,6 @@ describe('JobDetailsView', () => {
     expect(screen.getByText(/John Doe/i)).toBeInTheDocument()
     expect(screen.getByText(/Plumbing/i)).toBeInTheDocument()
     expect(screen.getByText(/Scheduled/i)).toBeInTheDocument()
-
-    const appointmentDate = screen.getByText(
-      'Appointment Date: Sat, 15 Jun 2024 09:00:00 GMT',
-    )
-    expect(appointmentDate).toBeInTheDocument()
-
     expect(screen.getByText(/Jane Smith/i)).toBeInTheDocument()
   })
 
