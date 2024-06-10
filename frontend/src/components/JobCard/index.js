@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, CardContent, Typography, Grid, Avatar } from '@mui/material'
+import {formatDateWithTimeZone} from "../../utils/dateUtils";
 
 /**
  * @summary Displays job details in a card format
@@ -23,7 +24,7 @@ const JobCard = ({ job, className, imgSrc }) => {
               Status: {job.status}
             </Typography>
             <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
-              Appointment Date: {new Date(job.appointmentDate).toUTCString()}
+              Appointment Date: {formatDateWithTimeZone(job.appointmentDate)}
             </Typography>
             <Typography variant="body2" sx={{ fontSize: '1.5rem' }}>
               Technician: {job.technician}
