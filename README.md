@@ -6,7 +6,7 @@
 This project is a web app for managing job records. The frontend uses React, the backend uses Python FastAPI and database uses MySql.
 
 
-### Quick Start
+## Quick Start
 
 #### Install and Run Docker
 1. **Install Docker Desktop:** Follow the instructions on [Docker's official website](https://www.docker.com/products/docker-desktop/) to install Docker Desktop.
@@ -36,7 +36,7 @@ This project is a web app for managing job records. The frontend uses React, the
 
 
 
-### High Level Design
+## High Level Design
 ![alt text](docs/high-level.png)
 
 
@@ -76,7 +76,7 @@ This project is a web app for managing job records. The frontend uses React, the
 **Database** - MySql
   - Stores the Job table for managing job-related data.
 
-### Libraries/Tools Used
+## Libraries/Tools Used
 **Frontend**
 - **React**
   - `react-router`: For handling routing within the application.
@@ -95,7 +95,7 @@ This project is a web app for managing job records. The frontend uses React, the
   - `databases`: For async database support.
   - `PyMySQL`: For MySQL database connectivity.
 
-### CI/CD process
+## CI/CD process
 - Using [github action](https://github.com/LowSugarCoke/job-management/actions), it triggers on pull request
 
 **Frontend CI/CD proocess**
@@ -106,7 +106,7 @@ This project is a web app for managing job records. The frontend uses React, the
 
 
 
-### Decisions and Trade-offs
+## Decisions and Trade-offs
 
 **Frontend**
 - `getAllJobs`: Implements initial loading with a boolean flag to prevent multiple calls on page refresh in JobView.
@@ -124,7 +124,7 @@ This project is a web app for managing job records. The frontend uses React, the
 - Use a relational database (MySQL) for consistency in job management data.
 
 
-### Future Improvements
+## Future Improvements
 
 **Frontend**
 - Sorting in table view to enhance user experience.
@@ -146,14 +146,14 @@ This project is a web app for managing job records. The frontend uses React, the
 ![alt text](docs/future.png)
 
 
-### Installation
+## Installation
 
 To get your development environment running, refer to the individual README files located in the project directories:
 
 - **Frontend Setup**: See instructions in `frontend/README.md`.
 - **Backend Setup**: See instructions in `backend/README.md`.
 
-### Authors
+## Authors
 
 - **Jack Lee**
 
