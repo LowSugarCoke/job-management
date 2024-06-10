@@ -2,6 +2,7 @@ import React from 'react'
 import JobForm from '../../components/JobForm'
 import useJobForm from '../../hooks/JobFormView/useJobForm'
 import { useLocation } from 'react-router-dom'
+import './JobFormView.css'
 
 /**
  * @summary Displays a job form for creating or editing a job
@@ -14,8 +15,8 @@ const JobFormView = () => {
   const { handleSubmit } = useJobForm(job)
 
   return (
-    <div>
-      <JobForm onSubmit={handleSubmit} job={job} />
+    <div className="job-form-view">
+      <JobForm className="job-form" onSubmit={handleSubmit} job={job} />
     </div>
   )
 }
