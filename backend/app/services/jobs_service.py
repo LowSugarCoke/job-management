@@ -10,6 +10,16 @@ from sqlalchemy.orm import Session
 from app.models.job import Job as JobModel
 
 def get_jobs(skip: int = 0, limit: int = 10, db: Session = None) -> List[JobModel]:
+    total_jobs = db.query(JobModel).count()
+    if skip < 0:
+        skip = 0
+    if limit < 1:
+        limit = 1
+    if skip >= total_jobs:
+        return [] 
+    if skip + limit > total_jobs:
+        limit = total_jobs - skip 
+
     return db.query(JobModel).offset(skip).limit(limit).all()
 
 def get_job(job_id: int, db: Session) -> JobModel:

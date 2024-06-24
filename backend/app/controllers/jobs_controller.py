@@ -14,31 +14,52 @@ from app.services import jobs_service
 from app.schemas.job import JobCreate, JobUpdate, Job as JobSchema
 
 def read_jobs(skip: int = 0, limit: int =10, db: Session = None) -> List[JobSchema]:
-    jobs = jobs_service.get_jobs(skip=skip, limit=limit, db=db)
-    return [JobSchema.from_orm(job) for job in jobs]
-
+    try:    
+        jobs = jobs_service.get_jobs(skip=skip, limit=limit, db=db)
+        return [JobSchema.from_orm(job) for job in jobs]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
 def read_job(job_id: int, db: Session) -> JobSchema:
-    job = jobs_service.get_job(job_id, db)
-    if job is None:
-        raise HTTPException(status_code=404, detail="Job not found")
-    return JobSchema.from_orm(job)
-
+    try:
+        job = jobs_service.get_job(job_id, db)
+        if job is None:
+            raise HTTPException(status_code=404, detail="Job not found")
+        return JobSchema.from_orm(job)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
 def create_job(job_create: JobCreate, db: Session) -> JobSchema:
-    job_model = JobModel(**job_create.dict())
-    job = jobs_service.create_job(job_model, db)
-    return JobSchema.from_orm(job)
+    try:
+        job_model = JobModel(**job_create.dict())
+        job = jobs_service.create_job(job_model, db)
+        return JobSchema.from_orm(job)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 def update_job(job_id: int, job_update: JobUpdate, db: Session) -> JobSchema:
-    existing_job = jobs_service.get_job(job_id, db)
-    if existing_job is None:
-        raise HTTPException(status_code=404, detail="Job not found")
-    
-    updated_job = JobModel(**job_update.dict())
-    job = jobs_service.update_job(existing_job, updated_job, db)
-    return JobSchema.from_orm(job)
+    try:
+        existing_job = jobs_service.get_job(job_id, db)
+        if existing_job is None:
+            raise HTTPException(status_code=404, detail="Job not found")
+        
+        updated_job = JobModel(**job_update.dict())
+        job = jobs_service.update_job(existing_job, updated_job, db)
+        return JobSchema.from_orm(job)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 def delete_job(job_id: int, db: Session) -> JobSchema:
-    job = jobs_service.delete_job(job_id, db)
-    if job is None:
-        raise HTTPException(status_code=404, detail="Job not found")
-    return JobSchema.from_orm(job)
+    try:
+        job = jobs_service.delete_job(job_id, db)
+        if job is None:
+            raise HTTPException(status_code=404, detail="Job not found")
+        return JobSchema.from_orm(job)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
