@@ -1,14 +1,35 @@
-## Backend Setup
+### Backend Setup
 
-### Prerequisites
+#### Prerequisites
+
 Ensure you have the following installed:
-- **Python 3.10** or later: [Download Python](https://www.python.org/downloads/)
 
-Create a .env file with the following MySQL configuration:
-```
+- **Python 3.10** or later: [Download Python](https://www.python.org/downloads/)
+- **Docker**: [Download Docker](https://www.docker.com/products/docker-desktop/)
+
+#### MySQL Configuration
+
+Create a `.env` file in your project root directory with the following MySQL configuration:
+
+```env
 DATABASE_URL = "mysql+pymysql://{username}:{password}@localhost:{port}/job_management"
 ```
-Replace {username} with your MySQL username, {password} with your MySQL password, and {port} with your MySQL port.
+
+Replace `{username}` with your MySQL username, `{password}` with your MySQL password, and `{port}` with your MySQL port (default is usually 3306).
+
+#### Redis Docker Environment
+
+To set up a Redis environment, run the following command:
+
+```sh
+docker run -d --name my-redis-container -p 6379:6379 redis
+```
+
+This command will:
+- Download the Redis Docker image if it is not already present.
+- Create and start a new container named `my-redis-container` running Redis.
+- Map port `6379` on your host machine to port `6379` on the container, making Redis accessible on `localhost:6379`.
+
 
 
 ### Creating a Python Virtual Environment
